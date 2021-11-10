@@ -1,7 +1,16 @@
-m4.2 <- quap(
+library(rethinking)
+
+d <- read.csv("data/hour.csv")
+tbar <- mean(d$temp)
+
+m <- quap(
     alist(
-        height ~ dnorm( mu , sigma ) ,
-        mu ~ dnorm( 178 , 0.1 ) ,
-        sigma ~ dunif( 0 , 50 )
-    ) , data=d2 )
-precis( m4.2 )
+        cnt ~ dnorm( mu, sigma ),
+        mu <- a + b * ( temp - tbar ),
+        a ~ dnorm(400, 200),
+        b ~ dnorm(200, 100),
+        sigma ~ dunif(0, 200)
+
+    ) , data=d )
+
+precis( m )
