@@ -16,8 +16,8 @@ d <- read.csv("data/hour.csv")
 # sample priors
 set.seed(1234)
 N <- 100
-a <- rnorm( N, 0, 1 )
-b <- rnorm( N, 500, 200 )
+a <- rnorm( N, 400, 200)
+b <- rnorm( N, 200, 100 )
 xbar <- mean(d$temp)
 
 # configure plot
